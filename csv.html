@@ -1,0 +1,41 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>
+            csvMaker
+        </title>
+    </head>
+    <body>
+        <button
+            id=btn
+        >
+        ...
+        </button>
+    </body>
+    <script>
+        function makeCsv(title,rows)
+        {
+            //make a link > fill it with csv > click it
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/csv;,' + encodeURIComponent(rows));
+            element.setAttribute('download',`${title}.csv`);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        let t = 'title'
+        let header='fname,lname\n'
+        let rows =  '"kevin","gamez"\n'
+
+        document.getElementById('btn').addEventListener('click',function(e)
+        {
+            makeCsv(t,header+rows)
+        })
+    </script>
+</html>
